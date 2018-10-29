@@ -1,13 +1,18 @@
-import axios from 'axios'
+import { getMD } from './utils'
 
 export default {
-  preact: true,
+//  preact: true,
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const content = await getMD('./src/content')
+    const posts = await getMD('./src/posts')
     return [
       {
         path: '/',
         component: 'src/containers/Home',
+        getData: () => ({
+          content,
+          posts,
+        }),
       },
       {
         path: '/about',
@@ -19,8 +24,8 @@ export default {
         getData: () => ({
           posts,
         }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
+        children: Object.values(posts).map(post => ({
+          path: `/post/${post.slug}`,
           component: 'src/containers/Post',
           getData: () => ({
             post,

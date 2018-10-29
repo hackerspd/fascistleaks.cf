@@ -1,12 +1,20 @@
 import React from 'react'
-import { withRouteData, Link } from 'react-static'
-//
+import Markdown from 'react-markdown'
+import { Card, CardImg, CardText, CardBody,
+         CardTitle, CardSubtitle, Button } from 'reactstrap';
 
-export default withRouteData(({ post }) => (
-  <div>
-    <Link to="/blog/">{'<'} Back</Link>
-    <br />
-    <h3>{post.title}</h3>
-    <p>{post.body}</p>
-  </div>
-))
+
+const Post = ({ content, data: { title, subtitle } }) => (
+  <Card>
+      <CardBody>
+          <CardTitle>{title}</CardTitle>
+          {subtitle && <CardSubtitle>{subtitle}</CardSubtitle>}
+          <CardText>
+              <Markdown source={content}/>
+          </CardText>
+
+      </CardBody>
+  </Card>
+)
+
+export default Post

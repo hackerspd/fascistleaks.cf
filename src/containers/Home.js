@@ -1,11 +1,21 @@
 import React from 'react'
-import { withSiteData } from 'react-static'
+import { withRouteData } from 'react-static'
+import { Container, Alert } from 'reactstrap'
+import Markdown from 'react-markdown'
 //
-import logoImg from '../logo.png'
+import Post from './Post'
 
-export default withSiteData(() => (
-  <div>
-    <h1 style={{ textAlign: 'center' }}>Welcome to</h1>
-    <img src={logoImg} alt="" style={{ display: 'block', margin: '0 auto' }} />
-  </div>
+const Intro = ({content, data: { title }}) => (
+  <Alert color="info">
+      <h3>{title}</h3>
+      <Markdown source={content}/>
+  </Alert>
+)
+
+export default withRouteData(({content: { intro }, posts}) => (
+  <Container>
+      <Intro {...intro}/>
+      <hr/>
+      {Object.values(posts).map(p => <Post key={p.slug} {...p}/>)}
+  </Container>
 ))

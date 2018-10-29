@@ -1,0 +1,48 @@
+h1 {
+	font-size: 2rem;
+	color: #24676c;
+	font-weight: normal;
+}
+p {
+	color: #666;
+}
+
+label {
+	color: #24676c;
+	font-size: 1.125rem;
+}
+.form-group {
+    margin-bottom: 1.875rem;
+}
+.form-check {
+	margin-bottom: 0.875rem;
+}
+.form-check-label {
+	color: #444;
+	font-size: 1rem;
+	margin-left:0.5rem;
+	cursor: pointer;
+	margin-top: 2px;
+}
+.categorias {
+	padding: 0.125rem 0 0 0.75rem;
+}
+.form-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 3rem;
+}
+.btn {
+    padding: .375rem 1.75rem;
+    z-index: 2;
+}
+.btn-info, .btn-info:hover {
+    color: #fff;
+    background-color: #24676c;
+    border-color: #24676c;
+}
+.btn-light, .btn-light:hover {
+    color: #24676c;
+    background-color: #bcd4dc;
+    border-color: #bcd4dc;
+}

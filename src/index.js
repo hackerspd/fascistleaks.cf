@@ -9,8 +9,9 @@ export default App
 
 // Render your app
 if (typeof document !== 'undefined') {
+  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate || ReactDOM.render
   const render = Comp => {
-    ReactDOM.render(<Comp />, document.getElementById('root'))
+    renderMethod(<Comp />, document.getElementById('root'))
   }
 
   // Render!
