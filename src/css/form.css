@@ -36,8 +36,7 @@ label {
 	margin-bottom: 3rem;
 }
 .btn {
-    padding: .375rem 1.75rem;
-    z-index: 2;
+	padding: .375rem 1.75rem;
 }
 .btn-info, .btn-info:hover {
     color: #fff;

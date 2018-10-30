@@ -15,6 +15,13 @@ export default {
         }),
       },
       {
+        path: '/form',
+        component: 'src/containers/Form',
+        getData: () => ({
+          content,
+        })
+      },
+      {
         path: '/about',
         component: 'src/containers/About',
       },
