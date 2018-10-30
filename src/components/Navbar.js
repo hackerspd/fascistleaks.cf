@@ -24,17 +24,19 @@ class MainNav extends React.PureComponent {
         return (
             <Navbar color="light" light expand="md">
                 <Container>
-                    <NavbarBrand href="/"><img src={Logo}/></NavbarBrand>
-                    <NavbarToggler onClick={() => this.setState(({isOpen}) => ({
-                            isOpen: !!!isOpen
-                    }))} />
+                    <div className="brand-block">
+                        <NavbarBrand href="/"><img src={Logo}/></NavbarBrand>
+                        <NavbarToggler onClick={() => this.setState(({isOpen}) => ({
+                                isOpen: !!!isOpen
+                        }))} />
+                    </div>
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink href="/about/"><Button color="link">Sobre</Button></NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/formulario"><Button outline color="info">Denuncie</Button></NavLink>
+                                <NavLink href="/form"><Button outline color="info">Denuncie</Button></NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>

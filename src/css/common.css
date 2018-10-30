@@ -16,9 +16,13 @@ a:hover, a .btn-link:hover {
     z-index: 2;
 }
 
+.brand-block {
+    display: flex;
+}
+
 .navbar-brand img {
-    width: 80%;
-    padding-top: 2em;
+    width: 100%;
+    padding-top: 0.7em;
 }
 
 @keyframes card-appear {
