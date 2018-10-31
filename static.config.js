@@ -1,7 +1,7 @@
 import { getMD } from './utils'
 
 export default {
-//  preact: true,
+  preact: true,
   getRoutes: async () => {
     const content = await getMD('./src/content')
     const posts = await getMD('./src/posts')
