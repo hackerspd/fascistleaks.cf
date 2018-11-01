@@ -21,7 +21,7 @@ const FormInput = connect(({id, formik: {touched, errors}, children, ...args}) =
   return (
     <FormGroup>
         <Label for={id}>{children}</Label>
-        <Input tag={Field} type="text" id={id} name={id} {...args} valid={touch && !error} invalid={error}/>
+        <Input tag={Field} type="text" id={id} name={id} {...args} valid={touch && !error} invalid={!!error}/>
         <div className='invalid-feedback'>{error}</div>
     </FormGroup>
   )
