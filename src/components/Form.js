@@ -3,7 +3,7 @@ import { Container, Alert, Button,
          FormGroup, FormText,
          Label, Input,
          Row, Col } from 'reactstrap'
-import { Field, Form, Formik, connect } from 'formik'
+import { FastField, Form, Formik, connect } from 'formik'
 import Markdown from 'react-markdown'
 //
 import '../css/form.css'
@@ -15,25 +15,37 @@ export const Intro = ({content, data: { title }}) => (
   </FormGroup>
 )
 
-const FormInput = connect(({id, formik: {touched, errors}, children, ...args}) => {
-  const error = errors[id]
-  const touch = touched[id]
-  return (
-    <FormGroup>
-        <Label for={id}>{children}</Label>
-        <Input tag={Field} type="text" id={id} name={id} {...args} valid={touch && !error} invalid={!!error}/>
-        <div className='invalid-feedback'>{error}</div>
-    </FormGroup>
-  )
-})
+const FormInput = connect(
+  ({formik: {touched, errors}, id, children, ...args}) => {
+    const error = errors[id]
+    const touch = touched[id]
 
-const CategoryRadio = ({children, ...args}) => (
-  <FormGroup>
-      <Label check>
-          <Input tag={Field} type="radio" name="categorias" id="checksCategoria1" {...args}/>
-          {children}
-      </Label>
-  </FormGroup>
+    return (
+      <FormGroup>
+          <Label for={id}>{children}</Label>
+          <Input tag={FastField} type="text" id={id} name={id} {...args}
+                 valid={touch && !error} invalid={touch && !!error}/>
+          <div className='invalid-feedback'>{error}</div>
+      </FormGroup>
+    )
+  })
+
+const CategoryRadio = connect(
+  ({formik: {touched, errors}, id="categoria", children, ...args}) => {
+    const error = errors[id]
+    const touch = touched[id]
+
+    return (
+      <FormGroup>
+          <Label check>
+              <Input tag={FastField} type="radio" name={id} id={id} {...args}
+                     valid={touch && !error} invalid={!!error}/>
+              {children}
+              <div className='invalid-feedback'>{error}</div>
+          </Label>
+      </FormGroup>
+    )
+  }
 )
 
 export const CategoriasForm = () => (
@@ -109,17 +121,13 @@ export const TitleForm = () => (
   </React.Fragment>
 )
 
-export const ReportForm = ({onSubmit, ...form}) => (
+export const ReportForm = ({onSubmit, validate, ...form}) => (
   <Container className='report-form'>
       <Intro {...form}/>
       <Formik
         initialValues={{}}
-        validate={({titulo, conteudo}) => {
-            const errors = {};
-            if (!titulo) errors.titulo = 'preencha un titulo'
-            if (!conteudo) errors.conteudo = 'nos conte o que esta denunciando'
-            return errors;
-        }}
+        validate={validate}
+        validateOnChange={false}
         onSubmit={onSubmit}>
           {({ isSubmitting }) => (
             <Form>
